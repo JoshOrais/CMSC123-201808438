@@ -15,13 +15,10 @@ public class Lab02Tester{
             System.out.println("\t4. Remove Edge");
 
             System.out.println("\nQUERIES");
-            System.out.println("\t5. List of vertices adjacent to a given vertex");
-            System.out.println("\t6. Adjacency Checker");
-            System.out.println("\t7. Connectedness Checker");
-            System.out.println("\t8. Breadth-First Traversal");
-            System.out.println("\t9. Depth-First Traversal");
+            System.out.println("\t5. Breadth-First Traversal");
+            System.out.println("\t6. Depth-First Traversal");
 
-            System.out.println("\n\t10. EXIT");
+            System.out.println("\n\t7. EXIT");
 
             System.out.print("\nEnter Choice: ");
             choice = scan.nextInt();
@@ -36,45 +33,21 @@ public class Lab02Tester{
             }
             if(choice == 3){
                 System.out.println("Enter 2 Vertices to connect: ");
-                graph.insertEdge(scan.next(), scan.next());
+                graph.insertEdge(scan.next(), scan.next(), 1);
             }
             if(choice == 4){
                 System.out.println("Enter 2 Vertices to disconnect: ");
                 graph.removeEdge(scan.next(), scan.next());
             }
             if(choice == 5){
-                System.out.print("Enter vertex: ");
-                graph.adjVert(scan.next());
+                System.out.print("Select root: ");
+                graph.depthFirst(scan.next());
             }
             if(choice == 6){
-                System.out.print("Enter two vertices: ");
-                boolean adjacency = graph.getAdjacency(scan.next(), scan.next());
-                
-                if(adjacency == true){
-                    System.out.println("The given vertices are adjacent");
-                }
-                else{
-                    System.out.println("The given vertices are not adjacent");
-                }
+                System.out.print("Select root: ");
+                graph.breadthFirst(scan.next());
             }
             if(choice == 7){
-                System.out.print("Enter two vertices: ");
-                boolean connectivity = graph.getConnectivity(scan.next(), scan.next());
-                
-                if(connectivity == true){
-                    System.out.println("The given vertices are connected");
-                }
-                else{
-                    System.out.println("The given vertices are not connected");
-                }
-            }
-            if(choice == 8){
-                System.out.print("Select root: ");
-            }
-            if(choice == 9){
-                System.out.print("Select root: ");
-            }
-            if(choice == 10){
                 break;
             }
             graph.showGraph();
