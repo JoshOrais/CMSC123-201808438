@@ -302,11 +302,6 @@ public int[] getDistanceToAll(String str){
     return distanceArr;
 }
 
-//----------RETURNS A COLLECTION OF THE TOPOLOGICAL SORTING OF THE GRAPH----------
-public void topologicalSorting(){
-    
-}
-
 //----------RETURNS ARRAY OF VERTICES----------
 
     public Vertex[] getVertexArr(){
