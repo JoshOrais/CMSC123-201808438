@@ -1,6 +1,6 @@
 package Testers;
 
-import Graphs.*;
+import LaboratoryExercise.*;
 import java.util.Scanner;
 
 public class Lab03Tester{
@@ -42,7 +42,7 @@ public class Lab03Tester{
                 String str1 = scan.next();
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
-                graph.insertEdge(str1, str2, 1);
+                graph.insertEdge(str1, str2, 1, false);
             }
             if(choice == 4){
                 System.out.println("Enter 2 Vertices to disconnect: ");
@@ -50,7 +50,7 @@ public class Lab03Tester{
                 String str1 = scan.next();
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
-                graph.removeEdge(str1, str2);
+                graph.removeEdge(str1, str2, false);
             }
             if(choice == 5){
                 System.out.print("Enter a vertex: ");

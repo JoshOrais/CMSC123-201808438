@@ -1,6 +1,6 @@
 package Testers;
 
-import Graphs.*;
+import LaboratoryExercise.*;
 import java.util.Scanner;
 
 public class Lab02Tester{
@@ -49,7 +49,7 @@ public class Lab02Tester{
                     String str1 = scan.next();
                     System.out.print("\tVertex 2: ");
                     String str2 = scan.next();
-                    graph.insertEdge(str1, str2, 1);
+                    graph.insertEdge(str1, str2, 1, false);
                 }
                 else if(type == 2){
                     System.out.println("Enter 2 Vertices to connect: ");
@@ -59,7 +59,7 @@ public class Lab02Tester{
                     String str2 = scan.next();
                     System.out.print("\tWeight: ");
                     int weight = scan.nextInt();
-                    graph.insertEdge(str1, str2, weight);
+                    graph.insertEdge(str1, str2, weight, false);
                 }
             }
             if(choice == 4){
@@ -68,7 +68,7 @@ public class Lab02Tester{
                 String str1 = scan.next();
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
-                graph.removeEdge(str1, str2);
+                graph.removeEdge(str1, str2, false);
             }
             if(choice == 5){
                 System.out.print("Enter a vertex: ");

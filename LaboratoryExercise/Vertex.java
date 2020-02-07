@@ -1,4 +1,4 @@
-package Graphs;
+package LaboratoryExercise;
 
 public class Vertex{
     public String vert;

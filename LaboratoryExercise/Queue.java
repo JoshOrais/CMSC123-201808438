@@ -1,4 +1,4 @@
-package Graphs;
+package LaboratoryExercise;
 
 public class Queue{
     Node head = null;
@@ -45,9 +45,9 @@ public class Queue{
     // }
 
     public Vertex dequeue(){
-        Vertex poppedVert = head.vert;
+        Vertex dequeued = head.vert;
         head = head.next;
-        return poppedVert;
+        return dequeued;
     }
 
     public void display(){

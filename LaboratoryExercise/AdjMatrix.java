@@ -1,4 +1,4 @@
-package Graphs;
+package LaboratoryExercise;
 
 public class AdjMatrix{
     private Vertex[] vertArr = new Vertex[0];
@@ -79,7 +79,7 @@ public class AdjMatrix{
 
 //----------INSERTS AN EDGE, ACCEPTS TWO STRINGS AND A WEIGHT----------
 
-    public void insertEdge(String vert1, String vert2, int weight){
+    public void insertEdge(String vert1, String vert2, int weight, boolean directed){
         Vertex vertex1 = new Vertex(vert1);
         Vertex vertex2 = new Vertex(vert2);
         int index1 = -1;
@@ -100,14 +100,20 @@ public class AdjMatrix{
                     index2 = i;
                 }
             }
-            matrix[index1][index2] = weight;
-            matrix[index2][index1] = weight;
+
+            if(directed == true){
+                matrix[index1][index2] = weight;
+            }
+            else{
+                matrix[index1][index2] = weight;
+                matrix[index2][index1] = weight;
+            }
         }
     }
 
 //----------REMOVES AN EDGE, ACCEPTS TWO STRINGS----------
     
-    public void removeEdge(String vert1, String vert2){
+    public void removeEdge(String vert1, String vert2, boolean directed){
         Vertex vertex1 = new Vertex(vert1);
         Vertex vertex2 = new Vertex(vert2);
         int index1 = -1;
@@ -128,8 +134,14 @@ public class AdjMatrix{
                     index2 = i;
                 }
             }
-            matrix[index1][index2] = 0;
-            matrix[index2][index1] = 0;
+
+            if(directed == true){
+                matrix[index1][index2] = 0;
+            }
+            else{
+                matrix[index1][index2] = 0;
+                matrix[index2][index1] = 0;
+            } 
         }
     }   
 
@@ -288,6 +300,11 @@ public int[] getDistanceToAll(String str){
     }
 
     return distanceArr;
+}
+
+//----------RETURNS A COLLECTION OF THE TOPOLOGICAL SORTING OF THE GRAPH----------
+public void topologicalSorting(){
+    
 }
 
 //----------RETURNS ARRAY OF VERTICES----------

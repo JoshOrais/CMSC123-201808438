@@ -1,4 +1,4 @@
-package Graphs;
+package LaboratoryExercise;
 
 public class DArray{
     public void add(){
