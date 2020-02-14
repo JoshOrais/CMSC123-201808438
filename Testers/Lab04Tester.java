@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 public class Lab04Tester{
     private Scanner scan = new Scanner (System.in);
-    private AdjMatrix graph = new AdjMatrix();
-    private TopologicalSort tSort;
+    private AdjacencyMatrix graph = new AdjacencyMatrix();
 
     public Lab04Tester(){
         int choice = 0;
@@ -51,16 +50,17 @@ public class Lab04Tester{
                 graph.removeEdge(str1, str2, true);
             }
             if(choice == 5){
-                tSort = new TopologicalSort(graph);
-                if(tSort.isCyclic(graph) == true){
-                    System.out.println("The Graph is not a DAG!!!");
-                }
-                else{
-                    String[] collection = tSort.getCollection();
-                    System.out.println("COLLECTION OF TOPOLOGICAL SORT: ");
+                try{
+                    graph.tSort();
+                    String[] collection = graph.getTSortCollection();
+
+                    System.out.println("COLLECTION OF TOPOLOGICAL SORTING: ");
                     for(int i=0; i<collection.length; i++){
                         System.out.println("[" + collection[i] + "]");
                     }
+                }
+                catch(NotDAGException e){
+                    System.out.println(e.getMessage());
                 }
             }
 
@@ -72,11 +72,11 @@ public class Lab04Tester{
             Vertex[] vertArr = graph.getVertexArr();
             int[][] matrix = graph.getMatrix();
 
-            System.out.println("\nVERTICES: ");
-            for(int i=0; i<vertArr.length; i++){
-                System.out.print("[" + vertArr[i].vert + "] ");
-            }
-            System.out.println("\n\nBINARY MATRIX: ");
+            // System.out.println("\nVERTICES: ");
+            // for(int i=0; i<vertArr.length; i++){
+            //     System.out.print("[" + vertArr[i].vert + "] ");
+            // }
+            System.out.println("\n\nMATRIX: ");
             System.out.print("VERT");
             for(int i=0; i<vertArr.length; i++){
                 System.out.print("\t" + vertArr[i].vert);
@@ -90,6 +90,12 @@ public class Lab04Tester{
                 System.out.println();
             }
             System.out.println("");
+
+            //-------------------------------------
+            // System.out.println("SHOW IN-DEGREE");
+            // for(int i=0; i<vertArr.length; i++){
+            //     System.out.println(vertArr[i].vert + ": " + vertArr[i].inDegree);
+            // }
         }
     }
 
