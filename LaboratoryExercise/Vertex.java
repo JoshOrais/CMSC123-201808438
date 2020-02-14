@@ -4,6 +4,8 @@ public class Vertex{
     public String vert;
     public boolean isVisited = false;
     public int pathLength = 0;
+    public int inDegree = 0;
+    public int inWeight = 0;
 
     public Vertex(String str){
         vert = str;
