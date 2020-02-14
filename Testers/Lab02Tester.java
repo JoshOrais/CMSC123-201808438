@@ -5,17 +5,17 @@ import java.util.Scanner;
 
 public class Lab02Tester{
     private Scanner scan = new Scanner (System.in);
-    private AdjMatrix graph = new AdjMatrix();
+    private AdjacencyMatrix graph = new AdjacencyMatrix();
 
     public Lab02Tester(){
-        int type;
+        int type = 1;
         int choice = 0;
 
-        System.out.println("\nSELECT TYPE OF GRAPH");
-        System.out.println("\t1. Unweighted");
-        System.out.println("\t2. Weighted");
-        System.out.print("\nEnter type of graph: ");
-        type = scan.nextInt();
+        // System.out.println("\nSELECT TYPE OF GRAPH");
+        // System.out.println("\t1. Unweighted");
+        // System.out.println("\t2. Weighted");
+        // System.out.print("\nEnter type of graph: ");
+        // type = scan.nextInt();
 
         while(true){
             System.out.println("\nMODIFICATIONS");
@@ -25,9 +25,8 @@ public class Lab02Tester{
             System.out.println("\t4. Remove Edge");
 
             System.out.println("\nQUERIES");
-            System.out.println("\t5. Get Adjacent Vertices");
-            System.out.println("\t6. Depth-First Traversal");
-            System.out.println("\t7. Breadth-First Traversal");
+            System.out.println("\t5. Depth-First Traversal");
+            System.out.println("\t6. Breadth-First Traversal");
 
             System.out.println("\n\t0. EXIT");
 
@@ -70,21 +69,31 @@ public class Lab02Tester{
                 String str2 = scan.next();
                 graph.removeEdge(str1, str2, false);
             }
+            // if(choice == 5){
+            //     System.out.print("Enter a vertex: ");
+            //     Vertex[] neighborArr = graph.getAdjacentVertices(scan.next());
+            //     for(int i=0; i<neighborArr.length; i++){
+            //         System.out.print("[" + neighborArr[i].vert + ", " + neighborArr[i].inWeight + "] ");
+            //     }
+            //     System.out.println();
+            // }
             if(choice == 5){
-                System.out.print("Enter a vertex: ");
-                Vertex[] neighborArr = graph.getAdjacentVertices(scan.next());
-                for(int i=0; i<neighborArr.length; i++){
-                    System.out.print("[" + neighborArr[i].vert +"] ");
+                System.out.print("Select root: ");
+                String[] dfs = graph.depthFirst(scan.next());
+                System.out.println("DEPTH FIRST SEARCH: ");
+                for(int i=0; i<dfs.length; i++){
+                    System.out.print("[" + dfs[i] + "]");
                 }
                 System.out.println();
             }
             if(choice == 6){
                 System.out.print("Select root: ");
-                graph.depthFirst(scan.next());
-            }
-            if(choice == 7){
-                System.out.print("Select root: ");
-                graph.breadthFirst(scan.next());
+                String[] bfs = graph.breadthFirst(scan.next());
+                System.out.println("BREADTH FIRST SEARCH: ");
+                for(int i=0; i<bfs.length; i++){
+                    System.out.print("[" + bfs[i] + "]");
+                }
+                System.out.println();
             }
 
             if(choice == 0){
@@ -95,11 +104,11 @@ public class Lab02Tester{
             Vertex[] vertArr = graph.getVertexArr();
             int[][] matrix = graph.getMatrix();
 
-            System.out.println("\nVERTICES: ");
-            for(int i=0; i<vertArr.length; i++){
-                System.out.print("[" + vertArr[i].vert + "] ");
-            }
-            System.out.println("\n\nBINARY MATRIX: ");
+            // System.out.println("\nVERTICES: ");
+            // for(int i=0; i<vertArr.length; i++){
+            //     System.out.print("[" + vertArr[i].vert + "] ");
+            // }
+            System.out.println("\n\nMATRIX: ");
             System.out.print("VERT");
             for(int i=0; i<vertArr.length; i++){
                 System.out.print("\t" + vertArr[i].vert);
