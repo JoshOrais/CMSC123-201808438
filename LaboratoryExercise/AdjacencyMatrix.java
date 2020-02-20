@@ -418,27 +418,20 @@ public class AdjacencyMatrix{
         return distanceArr;
     }
 
-//----------TOPOLOGICAL SORT, RETURNS THE COLLECTION OF ALL TOPOLOGICAL SORT----------
-    public void tSort() throws NotDAGException{
-        Node root = new Node(null);
-
-        while(true){
-            
-        }
-        // if(){
-        //     throw new NotDAGException("Input is not a Directed Acyclic Graph!");
-        // }
-    }
-
-    public void createTree(Node node){
+//----------RETURNS ALL VERTICES WITH 0 IN-DEGREE----------
+    public Vertex[] getZeroInDegree(){
+        ArrayList<Vertex> zeroInDegreeList = new ArrayList<Vertex>();
         
+        for(int i=0; i<vertArr.length; i++){
+            if(vertArr[i].inDegree == 0){
+                zeroInDegreeList.add(vertArr[i]);
+            }
+        }
+
+        Vertex[] zeroInDegreeArr = zeroInDegreeList.toArray(new Vertex[zeroInDegreeList.size()]);
+
+        return zeroInDegreeArr;
     }
-
-    public String[] getTSortCollection(){
-        return collection;
-    }
-
-
 
 
 //----------RETURNS ARRAY OF VERTICES----------
@@ -449,14 +442,5 @@ public class AdjacencyMatrix{
 //----------RETURNS MATRIX OF EDGES----------
     public int[][] getMatrix(){
         return matrix;
-    }
-
-    class Node{
-        Vertex vertex;
-        ArrayList<Node> child = new ArrayList<Node>();
-
-        public Node(Vertex vert){
-            vertex = vert;
-        }
     }
 }

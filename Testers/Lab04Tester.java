@@ -2,6 +2,7 @@ package Testers;
 
 import LaboratoryExercise.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Lab04Tester{
     private Scanner scan = new Scanner (System.in);
@@ -50,13 +51,21 @@ public class Lab04Tester{
                 graph.removeEdge(str1, str2, true);
             }
             if(choice == 5){
-                try{
-                    graph.tSort();
-                    String[] collection = graph.getTSortCollection();
+                Vertex[] vertexArr = graph.getVertexArr();
+                ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
 
-                    System.out.println("COLLECTION OF TOPOLOGICAL SORTING: ");
+                for(int i=0; i<vertexArr.length; i++){
+                    vertexList.add(vertexArr[i]);
+                }
+
+                try{
+                    DAGFunctions dagFunctions = new DAGFunctions(graph, vertexList);
+
+                    String[] collection = dagFunctions.getCollection();
+
+                    System.out.println("\nCOLLECTION OF TOPOLOGICAL SORTING: ");
                     for(int i=0; i<collection.length; i++){
-                        System.out.println("[" + collection[i] + "]");
+                        System.out.println("\t[" + collection[i] + "]");
                     }
                 }
                 catch(NotDAGException e){
@@ -68,7 +77,8 @@ public class Lab04Tester{
                 break;
             }
 
-            //Show Graph
+            //----------SHOWS GRAPH: ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
+
             Vertex[] vertArr = graph.getVertexArr();
             int[][] matrix = graph.getMatrix();
 
@@ -76,8 +86,9 @@ public class Lab04Tester{
             // for(int i=0; i<vertArr.length; i++){
             //     System.out.print("[" + vertArr[i].vert + "] ");
             // }
+            
             System.out.println("\n\nMATRIX: ");
-            System.out.print("VERT");
+            System.out.print("Vertex");
             for(int i=0; i<vertArr.length; i++){
                 System.out.print("\t" + vertArr[i].vert);
             }
