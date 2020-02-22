@@ -35,7 +35,8 @@ public class Lab02Tester{
 
             if(choice == 1){
                 System.out.print("Enter Vertex to Insert: ");
-                graph.insertVertex(scan.next());
+                String name = scan.next();
+                graph.insertVertex(name, 1);
             }
             if(choice == 2){
                 System.out.print("Enter Vertex to Remove: ");

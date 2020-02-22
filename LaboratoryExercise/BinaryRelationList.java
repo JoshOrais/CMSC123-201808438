@@ -9,7 +9,7 @@ public class BinaryRelationList{
     private int edgeCount = 0;
 
     public void insertVertex(String vertex){
-        Vertex current = new Vertex(vertex);
+        Vertex current = new Vertex(vertex, 1);
         if(current.exists(vertArr) == true){
             System.out.println("Vertex already exists!!!");
         }
@@ -28,8 +28,8 @@ public class BinaryRelationList{
 
     }
     public void insertEdge(String vert1, String vert2){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
         boolean checker = false;
 
         if(vertex1.exists(vertArr) == false){
@@ -62,8 +62,8 @@ public class BinaryRelationList{
         }
     }
     public void removeEdge(String vert1, String vert2){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
         boolean checker = false;
 
         if(vertex1.exists(vertArr) == false){

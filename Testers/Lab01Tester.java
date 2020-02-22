@@ -33,10 +33,10 @@ public class Lab01Tester{
 
             if(choice == 1){
                 System.out.print("Enter Vertex to Insert: ");
-                String input = scan.next();
-                graph.insertVertex(input);
+                String name = scan.next();
+                graph.insertVertex(name, 1);
                 // list.insertVertex(input);
-                naive.insertVertex(input);
+                naive.insertVertex(name);
             }
             if(choice == 2){
                 System.out.print("Enter Vertex to Remove: ");

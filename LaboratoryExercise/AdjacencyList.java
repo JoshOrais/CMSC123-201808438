@@ -4,7 +4,7 @@ public class AdjacencyList{
     Node head = null;
 
     public void insertVertex(String vert){
-        Vertex vertex = new Vertex(vert);
+        Vertex vertex = new Vertex(vert, 1);
         Node current = new Node(vertex);
 
         if(head == null){
