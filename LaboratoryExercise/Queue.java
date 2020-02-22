@@ -50,6 +50,20 @@ public class Queue{
         return dequeued;
     }
 
+    public boolean contains(Vertex vertex){
+        Node node = head;
+        boolean status = false;
+
+        while(node != null){
+            if(node.vert.vert.equals(vertex.vert)){
+                status = true;
+            }
+            node = node.next;
+        }    
+
+        return status;
+    }
+
     public void display(){
         Node node = head;
         while(node != null){

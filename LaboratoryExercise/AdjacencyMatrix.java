@@ -7,11 +7,10 @@ public class AdjacencyMatrix{
     private int[][] matrix = new int[0][0];
     private int vertNum = 0;
     private int edgeNum = 0;
-    private String[] collection = new String[0];
 
 //----------INSERTS A VERTEX, ACCEPTS STRING-----------
-    public void insertVertex(String strVert){
-        Vertex vertex = new Vertex(strVert);
+    public void insertVertex(String strVert, float weight){
+        Vertex vertex = new Vertex(strVert, weight);
         int arrLength = vertArr.length;
         Vertex[] newArr = new Vertex[arrLength+1];
         int[][] newMatrix = new int[arrLength+1][arrLength+1];
@@ -28,7 +27,7 @@ public class AdjacencyMatrix{
                 }
             }
 
-            Vertex newVert = new Vertex(strVert);
+            Vertex newVert = new Vertex(strVert, weight);
             newArr[arrLength] = newVert;
             vertArr = newArr;
             
@@ -42,7 +41,7 @@ public class AdjacencyMatrix{
 
 //----------REMOVES A VERTEX, ACCEPTS STRING----------
     public void removeVertex(String vert){
-        Vertex vertex = new Vertex(vert);
+        Vertex vertex = new Vertex(vert, 1);
         int length = vertArr.length;
         int pos = -1;
 
@@ -100,8 +99,8 @@ public class AdjacencyMatrix{
 
 //----------INSERTS AN EDGE, ACCEPTS TWO STRINGS, A WEIGHT, AND A BOOLEAN TO KNOW IF DIRECTED OR NOT----------
     public void insertEdge(String vert1, String vert2, int weight, boolean directed){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
         int index1 = -1;
         int index2 = -1;
 
@@ -140,8 +139,8 @@ public class AdjacencyMatrix{
 
 //----------REMOVES AN EDGE, ACCEPTS TWO STRINGS AND A BOOLEAN TO KNOW IF DIRECTED OR NOT----------  
     public void removeEdge(String vert1, String vert2, boolean directed){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
         int index1 = -1;
         int index2 = -1;
 
@@ -191,7 +190,7 @@ public class AdjacencyMatrix{
 
 //----------RETURNS THE NEIGHBORS OF A GIVEN VERTEX, ACCEPTS A STRING----------
     public Vertex[] getAdjacentVertices(String str){
-        Vertex vertex = new Vertex(str);
+        Vertex vertex = new Vertex(str, 1);
         Vertex[] neighborArr = new Vertex[0];
         int pos = -1;
 
@@ -224,8 +223,8 @@ public class AdjacencyMatrix{
 
 //----------RETURNS A BOOLEAN WHETHER TWO VERTICES ARE ADJACENT OR NOT----------
     public boolean checkIfAdjacent(String vert1, String vert2){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
 
         Vertex[] adjVert = getAdjacentVertices(vertex1.vert);
         if(vertex2.exists(adjVert) == true){
@@ -238,8 +237,8 @@ public class AdjacencyMatrix{
 
 //----------RETURNS A BOOLEAN WHETHER TWO VERTICES ARE CONNECTED OR NOT----------
     public boolean checkIfConnected(String vert1, String vert2){
-        Vertex vertex1 = new Vertex(vert1);
-        Vertex vertex2 = new Vertex(vert2);
+        Vertex vertex1 = new Vertex(vert1, 1);
+        Vertex vertex2 = new Vertex(vert2, 1);
         int vertPos2;
         Stack stack = new Stack();
         boolean status = false;
@@ -288,7 +287,7 @@ public class AdjacencyMatrix{
 
 //----------DEPTH FIRST SEARCH TRAVERSAL STARTING FROM A GIVEN VERTEX, ACCEPTS A STRING----------
     public String[] depthFirst(String str){
-        Vertex start = new Vertex(str);
+        Vertex start = new Vertex(str, 1);
         Stack stack = new Stack();
         ArrayList<String> dfs = new ArrayList<String>();
 
@@ -329,7 +328,7 @@ public class AdjacencyMatrix{
 
 //----------BREADTH FIRST SEARCH TRAVERSAL STARTING FROM A GIVEN VERTEX, ACCEPTS A STRING----------
     public String[] breadthFirst(String str){
-        Vertex start = new Vertex(str);
+        Vertex start = new Vertex(str, 1);
         Queue queue = new Queue();
         ArrayList<String> bfs = new ArrayList<String>();
 
@@ -370,7 +369,7 @@ public class AdjacencyMatrix{
 //----------RETURNS DISTANCE OF ALL VERTICES FROM A GIVEN VERTEX, ACCEPTS STRING----------
     public int[] getDistanceToAll(String str){
         int[] distanceArr = new int[vertArr.length];
-        Vertex source = new Vertex(str);
+        Vertex source = new Vertex(str, 1);
         Queue queue = new Queue();
 
         for(int i=0; i<vertArr.length; i++){
