@@ -179,8 +179,19 @@ public class DAGFunctions{
                 }
             }
 
+            // //TEST
+            // System.out.print("\nQueue:\t\t");
+            // queue.display();
+            // //TEST
+
             //----------dequeue
             Vertex dequeued = queue.dequeue();
+
+            // //TEST
+            // System.out.println("Dequeued:\t" + dequeued.vert);
+            // System.out.print("Updated queue:\t");
+            // queue.display();
+            // //TEST
 
             //----------increment critical Time of dequeued vertex, update critical path
             int dequeuedPositionOnOriginalSet = dequeued.findPosition(vertices.toArray(new Vertex[vertices.size()]));
@@ -208,16 +219,24 @@ public class DAGFunctions{
                     //----------decrement its in-degree
                     vertexList.get(adjacentPositionOnManipulatedSet).inDegree--;
 
-                    //----------if weighted graph, then add weight to the critical time
-                    if(weightedBoolean){
-                        criticalTimeArr[adjacentPositionOnOriginalSet] += matrix[dequeuedPositionOnOriginalSet][adjacentPositionOnManipulatedSet];
-                    }
-
                     //----------update vertex's critical time
                     if(criticalTimeArr[adjacentPositionOnOriginalSet] < criticalTimeArr[dequeuedPositionOnOriginalSet]){
                         criticalTimeArr[adjacentPositionOnOriginalSet] = criticalTimeArr[dequeuedPositionOnOriginalSet];
                         criticalPathArr[adjacentPositionOnOriginalSet] = criticalPathArr[dequeuedPositionOnOriginalSet];
                     }
+
+                    //----------if weighted graph, then add weight to the critical time
+                    if(weightedBoolean){
+                        criticalTimeArr[adjacentPositionOnOriginalSet] += matrix[dequeuedPositionOnOriginalSet][adjacentPositionOnOriginalSet];
+                    }
+
+                    // //TEST
+                    // System.out.println("\nCritical Test: ");
+                    // for(int j=0; j<vertices.size(); j++){
+                    //     System.out.println(vertices.get(j).vert + "\t" + criticalTimeArr[j] + "\t" + criticalPathArr[j]);
+                    // }
+                    // System.out.println();
+                    // //TEST
                 }
             }
         }

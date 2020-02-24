@@ -79,7 +79,7 @@ public class Lab06Tester{
                 break;
             }
 
-            //----------SHOWS GRAPH: ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
+            //----------DISPLAYS ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
 
             Vertex[] vertArr = graph.getVertexArr();
             float[][] matrix = graph.getMatrix();
