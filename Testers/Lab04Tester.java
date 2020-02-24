@@ -60,7 +60,7 @@ public class Lab04Tester{
                 }
 
                 try{
-                    DAGFunctions dagFunctions = new DAGFunctions(graph, vertexList);
+                    DAGFunctions dagFunctions = new DAGFunctions(graph, vertexList, false);
 
                     String[] collection = dagFunctions.getCollection();
 
@@ -81,7 +81,7 @@ public class Lab04Tester{
             //----------SHOWS GRAPH: ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
 
             Vertex[] vertArr = graph.getVertexArr();
-            int[][] matrix = graph.getMatrix();
+            float[][] matrix = graph.getMatrix();
 
             // System.out.println("\nVERTICES: ");
             // for(int i=0; i<vertArr.length; i++){

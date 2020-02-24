@@ -103,7 +103,7 @@ public class Lab02Tester{
 
             //Show Graph
             Vertex[] vertArr = graph.getVertexArr();
-            int[][] matrix = graph.getMatrix();
+            float[][] matrix = graph.getMatrix();
 
             // System.out.println("\nVERTICES: ");
             // for(int i=0; i<vertArr.length; i++){

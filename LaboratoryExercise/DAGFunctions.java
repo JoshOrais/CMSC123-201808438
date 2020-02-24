@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class DAGFunctions{
     private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
     private AdjacencyMatrix inputGraph = new AdjacencyMatrix();
+    private float[][] matrix;
+    private boolean weightedBoolean = false;
     
     private ArrayList<String> tSortCollection = new ArrayList<String>();
     private int criticalPos = -1;
@@ -21,10 +23,12 @@ public class DAGFunctions{
     //
     //
     //----------CONSTRUCTOR----------
-    public DAGFunctions(AdjacencyMatrix graph, ArrayList<Vertex> originalVertexList)throws NotDAGException{
+    public DAGFunctions(AdjacencyMatrix graph, ArrayList<Vertex> originalVertexList, boolean weightStatus)throws NotDAGException{
         
-        //----------initialize content of graph
+        //----------initialize content of graph, set boolean whether graph is weighted or not
         inputGraph = graph;
+        matrix = graph.getMatrix();
+        weightedBoolean = weightStatus;
 
         //----------initialize content of vertices by creating another instance of the original vertex list
         for(int i=0; i<originalVertexList.size(); i++){
@@ -204,7 +208,12 @@ public class DAGFunctions{
                     //----------decrement its in-degree
                     vertexList.get(adjacentPositionOnManipulatedSet).inDegree--;
 
-                    //----------update vertex's critical time if its less than 
+                    //----------if weighted graph, then add weight to the critical time
+                    if(weightedBoolean){
+                        criticalTimeArr[adjacentPositionOnOriginalSet] += matrix[dequeuedPositionOnOriginalSet][adjacentPositionOnManipulatedSet];
+                    }
+
+                    //----------update vertex's critical time
                     if(criticalTimeArr[adjacentPositionOnOriginalSet] < criticalTimeArr[dequeuedPositionOnOriginalSet]){
                         criticalTimeArr[adjacentPositionOnOriginalSet] = criticalTimeArr[dequeuedPositionOnOriginalSet];
                         criticalPathArr[adjacentPositionOnOriginalSet] = criticalPathArr[dequeuedPositionOnOriginalSet];

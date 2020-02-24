@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AdjacencyMatrix{
     private Vertex[] vertArr = new Vertex[0];
-    private int[][] matrix = new int[0][0];
+    private float[][] matrix = new float[0][0];
     private int vertNum = 0;
     private int edgeNum = 0;
 
@@ -13,7 +13,7 @@ public class AdjacencyMatrix{
         Vertex vertex = new Vertex(strVert, weight);
         int arrLength = vertArr.length;
         Vertex[] newArr = new Vertex[arrLength+1];
-        int[][] newMatrix = new int[arrLength+1][arrLength+1];
+        float[][] newMatrix = new float[arrLength+1][arrLength+1];
 
         if(vertex.exists(vertArr) == true){
             System.out.println("Vertex already exists!!!");
@@ -63,7 +63,7 @@ public class AdjacencyMatrix{
             }
 
             Vertex[] tempVert = new Vertex[length-1];
-            int[][] tempMatrix = new int[length-1][length-1];
+            float[][] tempMatrix = new float[length-1][length-1];
 
             for(int i=0; i<length; i++){
                 if(i<pos){
@@ -98,7 +98,7 @@ public class AdjacencyMatrix{
     }
 
 //----------INSERTS AN EDGE, ACCEPTS TWO STRINGS, A WEIGHT, AND A BOOLEAN TO KNOW IF DIRECTED OR NOT----------
-    public void insertEdge(String vert1, String vert2, int weight, boolean directed){
+    public void insertEdge(String vert1, String vert2, float weight, boolean directed){
         Vertex vertex1 = new Vertex(vert1, 1);
         Vertex vertex2 = new Vertex(vert2, 1);
         int index1 = -1;
@@ -439,7 +439,7 @@ public class AdjacencyMatrix{
     }
 
 //----------RETURNS MATRIX OF EDGES----------
-    public int[][] getMatrix(){
+    public float[][] getMatrix(){
         return matrix;
     }
 }

@@ -4,11 +4,11 @@ import LaboratoryExercise.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Lab05Tester{
+public class Lab06Tester{
     private Scanner scan = new Scanner (System.in);
     private AdjacencyMatrix graph = new AdjacencyMatrix();
 
-    public Lab05Tester(){
+    public Lab06Tester(){
         int choice = 0;
 
         while(true){
@@ -43,7 +43,10 @@ public class Lab05Tester{
                 String str1 = scan.next();
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
-                graph.insertEdge(str1, str2, 1, true);
+                System.out.println("OTIIIIIIIIIIN");
+                System.out.print("\tEnter Weight of Edge: ");
+                float weight = scan.nextFloat();
+                graph.insertEdge(str1, str2, weight, true);
             }
             if(choice == 4){
                 System.out.println("Enter 2 Vertices to disconnect: ");
@@ -62,7 +65,7 @@ public class Lab05Tester{
                 }
 
                 try{
-                    DAGFunctions dagFunctions = new DAGFunctions(graph, vertexList, false);
+                    DAGFunctions dagFunctions = new DAGFunctions(graph, vertexList, true);
                     dagFunctions.traverseCriticalPath();
 
                     System.out.println("\nCRITICAL TIME: " + dagFunctions.getCriticalTime());
