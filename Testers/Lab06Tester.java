@@ -43,7 +43,6 @@ public class Lab06Tester{
                 String str1 = scan.next();
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
-                System.out.println("OTIIIIIIIIIIN");
                 System.out.print("\tEnter Weight of Edge: ");
                 float weight = scan.nextFloat();
                 graph.insertEdge(str1, str2, weight, true);
@@ -108,6 +107,6 @@ public class Lab06Tester{
     }
 
     public static void main (String [] args){
-        new Lab05Tester();
+        new Lab06Tester();
     }
 }
