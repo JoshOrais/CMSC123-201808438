@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 import java.util.*;
 

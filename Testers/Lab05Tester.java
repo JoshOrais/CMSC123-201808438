@@ -1,6 +1,6 @@
 package Testers;
 
-import LaboratoryExercise.*;
+import DataStructures.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -84,17 +84,17 @@ public class Lab05Tester{
 
             System.out.println("\nVERTICES: ");
             for(int i=0; i<vertArr.length; i++){
-                System.out.print("[" + vertArr[i].vert + ":" + vertArr[i].weight + "] ");
+                System.out.print("[" + vertArr[i].name + ":" + vertArr[i].weight + "] ");
             }
             
             System.out.println("\n\nMATRIX: ");
             System.out.print("Vertex");
             for(int i=0; i<vertArr.length; i++){
-                System.out.print("\t" + vertArr[i].vert);
+                System.out.print("\t" + vertArr[i].name);
             }
             System.out.println();
             for(int i=0; i<vertArr.length; i++){
-                System.out.print(vertArr[i].vert);
+                System.out.print(vertArr[i].name);
                 for(int j=0; j<vertArr.length; j++){
                     System.out.print("\t" + matrix[i][j]);
                 }

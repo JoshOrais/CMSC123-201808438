@@ -1,11 +1,12 @@
 package Testers;
 
-import LaboratoryExercise.*;
+import DataStructures.*;
 import java.util.Scanner;
 
 public class Lab02Tester{
     private Scanner scan = new Scanner (System.in);
     private AdjacencyMatrix graph = new AdjacencyMatrix();
+    private GraphFunctions functions = new GraphFunctions();
 
     public Lab02Tester(){
         int type = 1;
@@ -70,17 +71,13 @@ public class Lab02Tester{
                 String str2 = scan.next();
                 graph.removeEdge(str1, str2, false);
             }
-            // if(choice == 5){
-            //     System.out.print("Enter a vertex: ");
-            //     Vertex[] neighborArr = graph.getAdjacentVertices(scan.next());
-            //     for(int i=0; i<neighborArr.length; i++){
-            //         System.out.print("[" + neighborArr[i].vert + ", " + neighborArr[i].inWeight + "] ");
-            //     }
-            //     System.out.println();
-            // }
             if(choice == 5){
                 System.out.print("Select root: ");
-                String[] dfs = graph.depthFirst(scan.next());
+                String vertexName = scan.next();
+                Vertex start = new Vertex(vertexName, 1);
+                String[] dfs = functions.dfs(graph, start);
+                // String[] dfs = graph.depthFirst(scan.next();
+
                 System.out.println("DEPTH FIRST SEARCH: ");
                 for(int i=0; i<dfs.length; i++){
                     System.out.print("[" + dfs[i] + "]");
@@ -89,7 +86,11 @@ public class Lab02Tester{
             }
             if(choice == 6){
                 System.out.print("Select root: ");
-                String[] bfs = graph.breadthFirst(scan.next());
+                String vertexName = scan.next();
+                Vertex start = new Vertex(vertexName, 1);
+                String[] bfs = functions.bfs(graph, start);
+                // String[] bfs = graph.breadthFirst(scan.next());
+
                 System.out.println("BREADTH FIRST SEARCH: ");
                 for(int i=0; i<bfs.length; i++){
                     System.out.print("[" + bfs[i] + "]");
@@ -112,11 +113,11 @@ public class Lab02Tester{
             System.out.println("\n\nMATRIX: ");
             System.out.print("VERT");
             for(int i=0; i<vertArr.length; i++){
-                System.out.print("\t" + vertArr[i].vert);
+                System.out.print("\t" + vertArr[i].name);
             }
             System.out.println();
             for(int i=0; i<vertArr.length; i++){
-                System.out.print(vertArr[i].vert);
+                System.out.print(vertArr[i].name);
                 for(int j=0; j<vertArr.length; j++){
                     System.out.print("\t" + matrix[i][j]);
                 }

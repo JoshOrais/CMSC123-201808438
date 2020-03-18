@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 public class PriorityQueue{
     private Node head = null;
@@ -12,7 +12,7 @@ public class PriorityQueue{
             Node node = head;
             Node temp = null;
 
-            while(node.vert.pathLength <= vertex.pathLength){
+            while(node.vertex.weight <= vertex.weight){
                 if(node.next == null){
                     temp = node;
                     node = null;
@@ -36,7 +36,7 @@ public class PriorityQueue{
         }
     }
     public Vertex dequeue(){
-        Vertex dequeued = head.vert;
+        Vertex dequeued = head.vertex;
         head = head.next;
         return dequeued;
     }
@@ -44,7 +44,7 @@ public class PriorityQueue{
         Node node = head;
         System.out.println();
         while(node != null){
-            System.out.print("[" + node.vert.vert + ", " + node.vert.pathLength + "] ");
+            System.out.print("[" + node.vertex.name + ", " + node.vertex.weight + "] ");
             node = node.next;
         }
         System.out.println("\n");
@@ -59,11 +59,11 @@ public class PriorityQueue{
     }
 
     class Node{
-        Vertex vert = null;
+        Vertex vertex = null;
         Node next = null;
 
         public Node(Vertex vertex){
-            vert = vertex;
+            this.vertex = vertex;
         }
 
     }

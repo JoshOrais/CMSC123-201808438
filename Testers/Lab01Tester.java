@@ -1,6 +1,6 @@
 package Testers;
 
-import LaboratoryExercise.*;
+import DataStructures.*;
 import java.util.Scanner;
 
 public class Lab01Tester{
@@ -36,14 +36,14 @@ public class Lab01Tester{
                 String name = scan.next();
                 graph.insertVertex(name, 1);
                 // list.insertVertex(input);
-                naive.insertVertex(name);
+                // naive.insertVertex(name);
             }
             if(choice == 2){
                 System.out.print("Enter Vertex to Remove: ");
                 String input = scan.next();
                 graph.removeVertex(input);
                 // list.removeVertex(input);
-                naive.removeVertex(input);
+                // naive.removeVertex(input);
             }
             if(choice == 3){
                 System.out.println("Enter 2 Vertices to connect: ");
@@ -53,7 +53,7 @@ public class Lab01Tester{
                 String str2 = scan.next();
                 graph.insertEdge(str1, str2, 1, false);
                 // list.insertEdge(str1, str2);
-                naive.insertEdge(str1, str2);
+                // naive.insertEdge(str1, str2);
             }
             if(choice == 4){
                 System.out.println("Enter 2 Vertices to disconnect: ");
@@ -63,33 +63,33 @@ public class Lab01Tester{
                 String str2 = scan.next();
                 graph.removeEdge(str1, str2, false);
                 // list.removeEdge(str1, str2);
-                naive.removeEdge(str1, str2);
+                // naive.removeEdge(str1, str2);
             }
             if(choice == 5){
                 System.out.println("Number of Vertices");
                 System.out.println("\tAdjacency Matrix:\t" + graph.getVertNum());
                 // System.out.println("\tAdjacency List:\t\t" + list.getVertNum());
-                System.out.println("\tBinary Relation List:\t" + naive.getVertNum());
+                // System.out.println("\tBinary Relation List:\t" + naive.getVertNum());
             }
             if(choice == 6){
                 System.out.println("Number of Edges");
                 System.out.println("\tAdjacency Matrix:\t" + graph.getEdgeNum());
                 // System.out.println("\tAdjacency List:\t\t" + list.getEdgeNum());
-                System.out.println("\tBinary Relation List:\t" + naive.getEdgeNum());
+                // System.out.println("\tBinary Relation List:\t" + naive.getEdgeNum());
             }
             if(choice == 7){
                 System.out.print("Enter a vertex: ");
-                String str = scan.next();
-
-                Vertex[] neighborArr1 = graph.getAdjacentVertices(str);
+                String vertexName = scan.next();
+                Vertex vertex = new Vertex(vertexName, 1);
+                Vertex[] neighborArr1 = graph.getAdjacentVertices(vertex);
                 // Vertex[] neighborArr2 = list.getAdjacentVertices(str);
-                Vertex[] neighborArr3 = naive.getAdjacentVertices(str);
+                // Vertex[] neighborArr3 = naive.getAdjacentVertices(str);
 
-                System.out.println("\nVertices Adjacent to Vertex " + str);
+                System.out.println("\nVertices Adjacent to Vertex " + vertexName);
 
                 System.out.print("\tAdjacency Matrix:\t");
                 for(int i=0; i<neighborArr1.length; i++){
-                    System.out.print("[" + neighborArr1[i].vert + "] ");
+                    System.out.print("[" + neighborArr1[i].name + "] ");
                 }
                 System.out.println();
 
@@ -99,11 +99,11 @@ public class Lab01Tester{
                 // }
                 // System.out.println();
 
-                System.out.print("\tBinary Relation List:\t");
-                for(int i=0; i<neighborArr3.length; i++){
-                    System.out.print("[" + neighborArr3[i].vert + "] ");
-                }
-                System.out.println();
+                // System.out.print("\tBinary Relation List:\t");
+                // for(int i=0; i<neighborArr3.length; i++){
+                //     System.out.print("[" + neighborArr3[i].name + "] ");
+                // }
+                // System.out.println();
             }
             if(choice == 8){
                 System.out.print("Enter 1st Vertex: ");
@@ -143,11 +143,11 @@ public class Lab01Tester{
             System.out.println("\n\nADJACENCY MATRIX");
             System.out.print("Vert");
             for(int i=0; i<vertArr1.length; i++){
-                System.out.print("\t" + vertArr1[i].vert);
+                System.out.print("\t" + vertArr1[i].name);
             }
             System.out.println();
             for(int i=0; i<vertArr1.length; i++){
-                System.out.print(vertArr1[i].vert);
+                System.out.print(vertArr1[i].name);
                 for(int j=0; j<vertArr1.length; j++){
                     System.out.print("\t" + matrix[i][j]);
                 }
@@ -161,7 +161,7 @@ public class Lab01Tester{
             System.out.println("\nBINARY RELATION LIST");
             System.out.print("\tVertices: ");
             for(int i=0; i<vertArr2.length; i++){
-                System.out.print("[" + vertArr2[i].vert + "] ");
+                System.out.print("[" + vertArr2[i].name + "] ");
             }
             System.out.print("\n\tEdges: ");
             for(int i=0; i<edgeArr.length; i++){

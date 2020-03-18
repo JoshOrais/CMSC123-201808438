@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class DAGFunctions{
 
         //----------initialize content of vertices by creating another instance of the original vertex list
         for(int i=0; i<originalVertexList.size(); i++){
-            Vertex vertex = new Vertex(originalVertexList.get(i).vert, originalVertexList.get(i).weight);
+            Vertex vertex = new Vertex(originalVertexList.get(i).name, originalVertexList.get(i).weight);
             vertex.inDegree = originalVertexList.get(i).inDegree;
             vertices.add(vertex);
         }
@@ -70,23 +70,23 @@ public class DAGFunctions{
     public void createDAGTree(AdjacencyMatrix graph, ArrayList<Vertex> inputVertexList, Node currentNode)throws NotDAGException{
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         for(int i=0; i<inputVertexList.size(); i++){
-            Vertex vertex = new Vertex(inputVertexList.get(i).vert, inputVertexList.get(i).weight);
+            Vertex vertex = new Vertex(inputVertexList.get(i).name, inputVertexList.get(i).weight);
             vertex.inDegree = inputVertexList.get(i).inDegree;
             vertexList.add(vertex);
         }
 
         // System.out.println("Recurssion for: " + currentNode.vertex.vert);
-        if(!currentNode.vertex.vert.equals("")){
+        if(!currentNode.vertex.name.equals("")){
             Vertex removed = null;
 
             for(int i=0; i<vertexList.size(); i++){
-                if(vertexList.get(i).vert.equals(currentNode.vertex.vert)){
+                if(vertexList.get(i).name.equals(currentNode.vertex.name)){
                     removed = vertexList.get(i);
                     vertexList.remove(i);
                 }
             }
 
-            Vertex[] adjacentToRemoved = graph.getAdjacentVertices(removed.vert);
+            Vertex[] adjacentToRemoved = graph.getAdjacentVertices(removed);
             ArrayList<Vertex> filteredVertices = new ArrayList<Vertex>();
 
             for(int i=0; i<adjacentToRemoved.length; i++){
@@ -137,7 +137,7 @@ public class DAGFunctions{
 
         path = path + " ";
         for(int i=0; i<node.child.size(); i++){
-            traverseTree(node.child.get(i), (path + node.child.get(i).vertex.vert));
+            traverseTree(node.child.get(i), (path + node.child.get(i).vertex.name));
         }
     }
     //
@@ -162,7 +162,7 @@ public class DAGFunctions{
         //----------creates a new instance if vertex list
         ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
         for(int i=0; i<vertices.size(); i++){
-            Vertex vertex = new Vertex(vertices.get(i).vert, vertices.get(i).weight);
+            Vertex vertex = new Vertex(vertices.get(i).name, vertices.get(i).weight);
             vertex.inDegree = vertices.get(i).inDegree;
             vertexList.add(vertex);
         }
@@ -196,17 +196,17 @@ public class DAGFunctions{
             //----------increment critical Time of dequeued vertex, update critical path
             int dequeuedPositionOnOriginalSet = dequeued.findPosition(vertices.toArray(new Vertex[vertices.size()]));
             criticalTimeArr[dequeuedPositionOnOriginalSet] = criticalTimeArr[dequeuedPositionOnOriginalSet] + dequeued.weight;
-            criticalPathArr[dequeuedPositionOnOriginalSet] = criticalPathArr[dequeuedPositionOnOriginalSet] + " " + dequeued.vert;
+            criticalPathArr[dequeuedPositionOnOriginalSet] = criticalPathArr[dequeuedPositionOnOriginalSet] + " " + dequeued.name;
 
             //----------remove the dequeued vertex from the vertex list
             for(int i=0; i<vertexList.size(); i++){
-                if(vertexList.get(i).vert.equals(dequeued.vert)){
+                if(vertexList.get(i).name.equals(dequeued.name)){
                     vertexList.remove(i);
                 }
             }
 
             //----------find adjacent vertices of the dequeued vertex through the refrence inputGraph
-            Vertex[] tempAdjacentVertices = inputGraph.getAdjacentVertices(dequeued.vert);
+            Vertex[] tempAdjacentVertices = inputGraph.getAdjacentVertices(dequeued);
 
             //----------check adjacent vertices if it is still present in the vertex list
             for(int i=0; i<tempAdjacentVertices.length; i++){
@@ -287,7 +287,7 @@ public class DAGFunctions{
 
     //----------FOR CHECKING PURPOSES, PRE-ORDER TRAVERSAL OF TREE----------
     public void print(Node node){
-        System.out.print("[" + node.vertex.vert + "] ");
+        System.out.print("[" + node.vertex.name + "] ");
         int num = node.child.size();
         for(int i=0; i<num; i++){
             print(node.child.get(i));

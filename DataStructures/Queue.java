@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 public class Queue{
     Node head = null;
@@ -55,7 +55,7 @@ public class Queue{
         boolean status = false;
 
         while(node != null){
-            if(node.vert.vert.equals(vertex.vert)){
+            if(node.vert.name.equals(vertex.name)){
                 status = true;
             }
             node = node.next;
@@ -67,7 +67,7 @@ public class Queue{
     public void display(){
         Node node = head;
         while(node != null){
-            System.out.print("[" + node.vert.vert + "] ");
+            System.out.print("[" + node.vert.name + "] ");
             node = node.next;
         }
         System.out.println();

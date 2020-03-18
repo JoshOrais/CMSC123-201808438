@@ -1,6 +1,5 @@
-package LaboratoryExercise;
+package DataStructures;
 
-import java.util.ArrayList;
 
 public class AdjacencyMatrix{
     private Vertex[] vertArr = new Vertex[0];
@@ -51,7 +50,7 @@ public class AdjacencyMatrix{
         else{
             vertNum--;
             for(int i=0; i<length; i++){
-                if(vertArr[i].vert.equals(vert)){
+                if(vertArr[i].name.equals(vert)){
                     pos = i;
                 }
             }
@@ -112,10 +111,10 @@ public class AdjacencyMatrix{
         }
         else{
             for(int i=0; i<vertArr.length; i++){
-                if(vertArr[i].vert.equals(vert1)){
+                if(vertArr[i].name.equals(vert1)){
                     index1 = i;
                 }
-                if(vertArr[i].vert.equals(vert2)){
+                if(vertArr[i].name.equals(vert2)){
                     index2 = i;
                 }
             }
@@ -152,10 +151,10 @@ public class AdjacencyMatrix{
         }
         else{
             for(int i=0; i<vertArr.length; i++){
-                if(vertArr[i].vert.equals(vert1)){
+                if(vertArr[i].name.equals(vert1)){
                     index1 = i;
                 }
-                if(vertArr[i].vert.equals(vert2)){
+                if(vertArr[i].name.equals(vert2)){
                     index2 = i;
                 }
             }
@@ -189,8 +188,7 @@ public class AdjacencyMatrix{
     }
 
 //----------RETURNS THE NEIGHBORS OF A GIVEN VERTEX, ACCEPTS A STRING----------
-    public Vertex[] getAdjacentVertices(String str){
-        Vertex vertex = new Vertex(str, 1);
+    public Vertex[] getAdjacentVertices(Vertex vertex){
         Vertex[] neighborArr = new Vertex[0];
         int pos = -1;
 
@@ -199,7 +197,7 @@ public class AdjacencyMatrix{
         }
         else{
             for(int i=0; i<vertArr.length; i++){
-                if(str.equals(vertArr[i].vert)){
+                if(vertex.name.equals(vertArr[i].name)){
                     pos = i;
                 }
             }
@@ -226,7 +224,7 @@ public class AdjacencyMatrix{
         Vertex vertex1 = new Vertex(vert1, 1);
         Vertex vertex2 = new Vertex(vert2, 1);
 
-        Vertex[] adjVert = getAdjacentVertices(vertex1.vert);
+        Vertex[] adjVert = getAdjacentVertices(vertex1);
         if(vertex2.exists(adjVert) == true){
             return true;
         }
@@ -261,7 +259,7 @@ public class AdjacencyMatrix{
                 pos = popped.findPosition(vertArr);
                 vertArr[pos].isVisited = true;
 
-                Vertex[] adjVert = getAdjacentVertices(popped.vert);
+                Vertex[] adjVert = getAdjacentVertices(popped);
 
                 for(int i=0; i<adjVert.length; i++){
                     pos = adjVert[i].findPosition(vertArr);
@@ -285,153 +283,17 @@ public class AdjacencyMatrix{
         return status;
     }
 
-//----------DEPTH FIRST SEARCH TRAVERSAL STARTING FROM A GIVEN VERTEX, ACCEPTS A STRING----------
-    public String[] depthFirst(String str){
-        Vertex start = new Vertex(str, 1);
-        Stack stack = new Stack();
-        ArrayList<String> dfs = new ArrayList<String>();
-
-        if(start.exists(vertArr) == false){
-            System.out.println("Vertex does not exist!!!");
-        }
-        else{
-            stack.push(start);
-            int pos;
-
-            while(stack.isEmpty() == false){
-                Vertex popped = stack.pop();
-                dfs.add(popped.vert);
-                
-                pos = popped.findPosition(vertArr);
-                vertArr[pos].isVisited = true;
-
-                Vertex[] adjVert = getAdjacentVertices(popped.vert);
-
-                for(int i=0; i<adjVert.length; i++){
-                    pos = adjVert[i].findPosition(vertArr);
-                    if(vertArr[pos].isVisited == false){
-                        vertArr[pos].inWeight = adjVert[i].inWeight;
-                        stack.push(vertArr[pos]);
-                        vertArr[pos].isVisited = true;
-                    }
-                }
-            }
-            
-            for(int i=0; i<vertArr.length; i++){
-                vertArr[i].isVisited = false;
-            }
-        }
-
-        String[] dfsArr = dfs.toArray(new String[dfs.size()]);
-        return dfsArr;
-    }
-
-//----------BREADTH FIRST SEARCH TRAVERSAL STARTING FROM A GIVEN VERTEX, ACCEPTS A STRING----------
-    public String[] breadthFirst(String str){
-        Vertex start = new Vertex(str, 1);
-        Queue queue = new Queue();
-        ArrayList<String> bfs = new ArrayList<String>();
-
-        if(start.exists(vertArr) == false){
-            System.out.println("Vertex does not exist!!!");
-        }
-        else{
-            queue.enqueue(start);
-            int pos;
-
-            while(queue.isEmpty() == false){
-                Vertex dequeued = queue.dequeue();
-                bfs.add(dequeued.vert);
-                
-                pos = dequeued.findPosition(vertArr);
-                vertArr[pos].isVisited = true;
-
-                Vertex[] adjVert = getAdjacentVertices(dequeued.vert);
-
-                for(int i=0; i<adjVert.length; i++){
-                    pos = adjVert[i].findPosition(vertArr);
-                    if(vertArr[pos].isVisited == false){
-                        queue.enqueue(vertArr[pos]);
-                        vertArr[pos].isVisited = true;
-                    }
-                }
-            }
-
-            for(int i=0; i<vertArr.length; i++){
-                vertArr[i].isVisited = false;
-            }
-        }
-        
-        String[] bfsArr = bfs.toArray(new String[bfs.size()]);
-        return bfsArr;
-    }
-
-//----------RETURNS DISTANCE OF ALL VERTICES FROM A GIVEN VERTEX, ACCEPTS STRING----------
-    public int[] getDistanceToAll(String str){
-        int[] distanceArr = new int[vertArr.length];
-        Vertex source = new Vertex(str, 1);
-        Queue queue = new Queue();
+//----------CHECKS IF A GIVEN VERTEX EXISTS ON THE GRAPH----------
+    public boolean exists(String vertexName){
+        boolean status = false;
 
         for(int i=0; i<vertArr.length; i++){
-            vertArr[i].pathLength = 2147483647;
-        }
-
-        source.pathLength = 0;
-        queue.enqueue(source);
-
-        while(queue.isEmpty() == false){
-
-            Vertex current = queue.dequeue();
-            int posCurr = current.findPosition(vertArr);
-            vertArr[posCurr].isVisited = true;
-            vertArr[posCurr].pathLength = current.pathLength;
-
-            Vertex[] adjVert = getAdjacentVertices(vertArr[posCurr].vert);
-
-            for(int i=0; i<adjVert.length; i++){
-                int adjPos = adjVert[i].findPosition(vertArr);
-
-                if(vertArr[adjPos].isVisited == false){
-                    if(vertArr[adjPos].pathLength > vertArr[posCurr].pathLength){
-                        vertArr[adjPos].pathLength = vertArr[posCurr].pathLength + 1;
-                    }
-                    queue.enqueue(vertArr[adjPos]);
-                }
+            if(vertArr[i].name.equals(vertexName)){
+                status = true;
             }
         }
-
-        for(int i=0; i<vertArr.length; i++){
-            if(vertArr[i].pathLength == 2147483647){
-                distanceArr[i] = 0;
-            }
-            else{
-                distanceArr[i] = vertArr[i].pathLength;
-            }
-        }
-
-        for(int i=0; i<vertArr.length; i++){
-            vertArr[i].isVisited = false;
-            vertArr[i].pathLength = 0;
-        }
-
-        return distanceArr;
+        return status;
     }
-
-//----------RETURNS ALL VERTICES WITH 0 IN-DEGREE----------
-    public Vertex[] getZeroInDegree(){
-        ArrayList<Vertex> zeroInDegreeList = new ArrayList<Vertex>();
-        
-        for(int i=0; i<vertArr.length; i++){
-            if(vertArr[i].inDegree == 0){
-                zeroInDegreeList.add(vertArr[i]);
-            }
-        }
-
-        Vertex[] zeroInDegreeArr = zeroInDegreeList.toArray(new Vertex[zeroInDegreeList.size()]);
-
-        return zeroInDegreeArr;
-    }
-
 
 //----------RETURNS ARRAY OF VERTICES----------
     public Vertex[] getVertexArr(){

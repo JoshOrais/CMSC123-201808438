@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 public class AdjacencyList{
     Node head = null;

@@ -1,4 +1,4 @@
-package LaboratoryExercise;
+package DataStructures;
 
 public class Stack{
     private Node head = null;
@@ -42,7 +42,7 @@ public class Stack{
     public void display(){
         Node node = head;
         while(node != null){
-            System.out.print("[" + node.vert.vert + "] ");
+            System.out.print("[" + node.vert.name + "] ");
             node = node.next;
         }
         System.out.println();
