@@ -23,7 +23,7 @@ public class GraphReader{
                 else{
                     if(contentChecker == 0){
                         String vertexName;
-                        float vertexWeight;
+                        double vertexWeight;
                         int colonPosition;
 
                         int i=0;
@@ -33,7 +33,7 @@ public class GraphReader{
                         colonPosition = i;
 
                         vertexName = contentLine.substring(0, colonPosition);
-                        vertexWeight = Float.parseFloat(contentLine.substring(colonPosition+1, contentLine.length()));
+                        vertexWeight = Double.parseDouble(contentLine.substring(colonPosition+1, contentLine.length()));
 
                         graph.insertVertex(vertexName, vertexWeight);
                     }
@@ -41,7 +41,7 @@ public class GraphReader{
                     if(contentChecker == 1){
                         String vertexA = "";
                         String vertexB = "";
-                        float edgeWeight = 0;
+                        double edgeWeight = 0;
                         int comaPosition = 0;
                         int colonPosition = 0;
 
@@ -58,7 +58,7 @@ public class GraphReader{
 
                         vertexA = contentLine.substring(0,comaPosition);
                         vertexB = contentLine.substring(comaPosition+1, colonPosition);
-                        edgeWeight = Float.parseFloat(contentLine.substring(colonPosition+1,contentLine.length()));
+                        edgeWeight = Double.parseDouble(contentLine.substring(colonPosition+1,contentLine.length()));
 
                         graph.insertEdge(vertexA, vertexB, edgeWeight, true);
                     }

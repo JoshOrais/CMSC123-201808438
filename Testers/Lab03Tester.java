@@ -55,7 +55,7 @@ public class Lab03Tester{
                 System.out.print("Select source vertex: ");
                 String vertexName = scan.next();
                 Vertex source = new Vertex(vertexName, 1);
-                float[] distanceArr = functions.ssupl(graph, source);
+                double[] distanceArr = functions.ssupl(graph, source);
 
                 System.out.println("\nDISTANCE TO ALL VERTICES FROM VERTEX: " + vertexName);
                 for(int i=0; i<distanceArr.length; i++){
@@ -69,7 +69,7 @@ public class Lab03Tester{
 
             //Show Graph
             Vertex[] vertArr = graph.getVertexArr();
-            float[][] matrix = graph.getMatrix();
+            double[][] matrix = graph.getMatrix();
 
             System.out.println("\nVERTICES: ");
             for(int i=0; i<vertArr.length; i++){

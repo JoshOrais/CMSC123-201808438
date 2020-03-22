@@ -81,7 +81,7 @@ public class Lab04Tester{
             //----------SHOWS GRAPH: ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
 
             Vertex[] vertArr = graph.getVertexArr();
-            float[][] matrix = graph.getMatrix();
+            double[][] matrix = graph.getMatrix();
 
             // System.out.println("\nVERTICES: ");
             // for(int i=0; i<vertArr.length; i++){

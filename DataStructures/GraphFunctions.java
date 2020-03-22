@@ -12,7 +12,7 @@ public class GraphFunctions{
         return traversal.breadthFirstSearch(graph, start);
     }
 
-    public float[] ssupl(AdjacencyMatrix graph, Vertex source){
+    public double[] ssupl(AdjacencyMatrix graph, Vertex source){
         return singleSourceUndirectedPathLength.getDistanceToAllVertices(graph, source);
     }
 }

@@ -22,7 +22,7 @@ public class Traversal{
                 pos = popped.findPosition(vertexArray);
                 vertexArray[pos].isVisited = true;
 
-                Vertex[] adjVert = graph.getAdjacentVertices(popped);
+                Vertex[] adjVert = graph.getAdjacentVertices(popped.name);
 
                 for(int i=0; i<adjVert.length; i++){
                     pos = adjVert[i].findPosition(vertexArray);
@@ -62,7 +62,7 @@ public class Traversal{
                 pos = dequeued.findPosition(vertexArray);
                 vertexArray[pos].isVisited = true;
 
-                Vertex[] adjVert = graph.getAdjacentVertices(dequeued);
+                Vertex[] adjVert = graph.getAdjacentVertices(dequeued.name);
 
                 for(int i=0; i<adjVert.length; i++){
                     pos = adjVert[i].findPosition(vertexArray);

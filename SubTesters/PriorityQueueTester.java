@@ -19,7 +19,7 @@ public class PriorityQueueTester{
                 System.out.print("\nEnter vertex: ");
                 String name = scan.next();
                 System.out.print("Enter weight: ");
-                float weight = scan.nextFloat();
+                double weight = scan.nextDouble();
                 Vertex vertex = new Vertex(name, weight);
                 prioQueue.enqueue(vertex);
             }

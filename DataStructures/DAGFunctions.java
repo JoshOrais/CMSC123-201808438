@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class DAGFunctions{
     private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
     private AdjacencyMatrix inputGraph = new AdjacencyMatrix();
-    private float[][] matrix;
+    private double[][] matrix;
     private boolean weightedBoolean = false;
     
     private ArrayList<String> tSortCollection = new ArrayList<String>();
     private int criticalPos = -1;
 
     private String[] criticalPathArr;
-    private float[] criticalTimeArr;
-    private float criticalTime = 0;
+    private double[] criticalTimeArr;
+    private double criticalTime = 0;
 
     private Vertex vert = new Vertex("", 0);
     private Node root = new Node(vert);
@@ -44,7 +44,7 @@ public class DAGFunctions{
         }
 
         //----------initialize content of each vertex's critical time
-        criticalTimeArr = new float[originalVertexList.size()];
+        criticalTimeArr = new double[originalVertexList.size()];
         for(int i=0; i<criticalTimeArr.length; i++){
             criticalTimeArr[i] = 0;
         }
@@ -86,7 +86,7 @@ public class DAGFunctions{
                 }
             }
 
-            Vertex[] adjacentToRemoved = graph.getAdjacentVertices(removed);
+            Vertex[] adjacentToRemoved = graph.getAdjacentVertices(removed.name);
             ArrayList<Vertex> filteredVertices = new ArrayList<Vertex>();
 
             for(int i=0; i<adjacentToRemoved.length; i++){
@@ -206,7 +206,7 @@ public class DAGFunctions{
             }
 
             //----------find adjacent vertices of the dequeued vertex through the refrence inputGraph
-            Vertex[] tempAdjacentVertices = inputGraph.getAdjacentVertices(dequeued);
+            Vertex[] tempAdjacentVertices = inputGraph.getAdjacentVertices(dequeued.name);
 
             //----------check adjacent vertices if it is still present in the vertex list
             for(int i=0; i<tempAdjacentVertices.length; i++){
@@ -247,7 +247,7 @@ public class DAGFunctions{
     //
     //
     //----------RETURNS THE CRITICAL TIME----------
-    public float getCriticalTime(){
+    public double getCriticalTime(){
         for(int i=0; i<criticalTimeArr.length; i++){
             if(criticalTimeArr[i] > criticalTime){
                 criticalTime = criticalTimeArr[i];

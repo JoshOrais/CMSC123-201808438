@@ -30,7 +30,7 @@ public class Lab06Tester{
                 System.out.print("Enter Vertex to Insert: ");
                 String name = scan.next();
                 System.out.print("Enter Weight of Vertex: ");
-                float weight = scan.nextFloat();
+                double weight = scan.nextDouble();
                 graph.insertVertex(name, weight);
             }
             if(choice == 2){
@@ -44,7 +44,7 @@ public class Lab06Tester{
                 System.out.print("\tVertex 2: ");
                 String str2 = scan.next();
                 System.out.print("\tEnter Weight of Edge: ");
-                float weight = scan.nextFloat();
+                double weight = scan.nextDouble();
                 graph.insertEdge(str1, str2, weight, true);
             }
             if(choice == 4){
@@ -82,7 +82,7 @@ public class Lab06Tester{
             //----------DISPLAYS ARRAY OF VERTICES AND CORRESPONDING MATRIX----------
 
             Vertex[] vertArr = graph.getVertexArr();
-            float[][] matrix = graph.getMatrix();
+            double[][] matrix = graph.getMatrix();
 
             System.out.println("\nVERTICES: ");
             for(int i=0; i<vertArr.length; i++){

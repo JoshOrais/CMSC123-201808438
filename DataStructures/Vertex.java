@@ -5,10 +5,10 @@ public class Vertex{
     public boolean isVisited = false;
     public int pathLength = 0;
     public int inDegree = 0;
-    public float inWeight = 0;
-    public float weight = 0;
+    public double inWeight = 0;
+    public double weight = 0;
 
-    public Vertex(String str, float num){
+    public Vertex(String str, double num){
         name = str;
         weight = num;
     }

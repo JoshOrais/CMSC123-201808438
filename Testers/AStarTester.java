@@ -59,7 +59,7 @@ public class AStarTester{
         System.out.println("The shirtest path is: " + path);
 
         //get time taken
-        float time = aStar.getTime();
+        double time = aStar.getTime();
         System.out.println("Time taken of the shortest path: " + time);
     }
 

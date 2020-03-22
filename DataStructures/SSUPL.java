@@ -1,9 +1,9 @@
 package DataStructures;
 
 public class SSUPL{
-    public float[] getDistanceToAllVertices(AdjacencyMatrix graph, Vertex source){
+    public double[] getDistanceToAllVertices(AdjacencyMatrix graph, Vertex source){
         Vertex[] vertexArray = graph.getVertexArr();
-        float[] distanceArr = new float[vertexArray.length];
+        double[] distanceArr = new double[vertexArray.length];
         Queue queue = new Queue();
 
         for(int i=0; i<vertexArray.length; i++){
@@ -20,7 +20,7 @@ public class SSUPL{
             vertexArray[posCurr].isVisited = true;
             vertexArray[posCurr].pathLength = current.pathLength;
 
-            Vertex[] adjVert = graph.getAdjacentVertices(vertexArray[posCurr]);
+            Vertex[] adjVert = graph.getAdjacentVertices(vertexArray[posCurr].name);
 
             for(int i=0; i<adjVert.length; i++){
                 int adjPos = adjVert[i].findPosition(vertexArray);

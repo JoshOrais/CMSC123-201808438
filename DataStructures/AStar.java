@@ -1,15 +1,29 @@
 package DataStructures;
 
 public class AStar{
-    public AStar(AdjacencyMatrix graph, String start, String end){
+    private AdjacencyMatrix graph = new AdjacencyMatrix();
+    private String start;
+    private String end;
+
+    private String shortestPath = "";
+    private double time = 0;
+
+    public AStar(AdjacencyMatrix inputGraph, String startName, String endName){
+        graph = inputGraph;
+        start = startName;
+        end = endName;
+        start();
+    }
+
+    public void start(){
         
     }
 
     public String getShortestPath(){
-        return null;
+        return shortestPath;
     }
 
-    public float getTime(){
-        return 0;
+    public double getTime(){
+        return time;
     }
 }
