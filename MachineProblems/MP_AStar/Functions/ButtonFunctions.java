@@ -1,4 +1,4 @@
-package MachineProblems.MP_AStar;
+package MachineProblems.MP_AStar.Functions;
 
 public class ButtonFunctions{
     public ButtonFunctions(){

@@ -59,7 +59,7 @@ public class Lab01Tester{
                 graph.removeEdge(str1, str2, false);
             }
             if(choice == 5){
-                System.out.println("Number of Vertices: " + graph.getVertNum());
+                System.out.println("Number of Vertices: " + graph.getVertexNum());
             }
             if(choice == 6){
                 System.out.println("Number of Edges: " + graph.getEdgeNum());

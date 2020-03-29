@@ -1,4 +1,4 @@
-package DataStructures;
+package MachineProblems.MP_AStar.DataStructures;
 
 public class PriorityQueue{
     private Node head = null;
@@ -35,11 +35,17 @@ public class PriorityQueue{
             }
         }
     }
+
     public Vertex dequeue(){
         Vertex dequeued = head.vertex;
         head = head.next;
         return dequeued;
     }
+
+    public String peek(){
+        return head.vertex.name;
+    }
+
     public void display(){
         Node node = head;
         System.out.println();
@@ -49,6 +55,7 @@ public class PriorityQueue{
         }
         System.out.println("\n");
     }
+
     public boolean isEmpty(){
         if(head == null){
             return true;

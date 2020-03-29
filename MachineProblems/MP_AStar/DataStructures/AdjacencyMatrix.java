@@ -1,4 +1,4 @@
-package DataStructures;
+package MachineProblems.MP_AStar.DataStructures;
 
 
 public class AdjacencyMatrix{
@@ -50,12 +50,6 @@ public class AdjacencyMatrix{
             for(int i=0; i<length; i++){
                 if(vertexArray[i].name.equals(vertexName)){
                     pos = i;
-                }
-            }
-
-            for(int i=0; i<vertexArray.length; i++){
-                if(matrix[pos][i] > 0){
-                    vertexArray[i].inDegree--;
                 }
             }
 
@@ -122,7 +116,6 @@ public class AdjacencyMatrix{
                 edgeNum++;
                 if(directed == true){
                     matrix[index1][index2] = weight;
-                    vertexArray[index2].inDegree++;
                 }
                 else{
                     matrix[index1][index2] = weight;
@@ -160,7 +153,6 @@ public class AdjacencyMatrix{
                 edgeNum--;
                 if(directed == true){
                     matrix[index1][index2] = 0;
-                    vertexArray[index2].inDegree--;
                 }
                 else{
                     matrix[index1][index2] = 0;
@@ -204,91 +196,12 @@ public class AdjacencyMatrix{
                     }
                     
                     tempArr[neighborArr.length] = vertexArray[i];
-                    tempArr[neighborArr.length].inWeight = matrix[pos][i];
                     neighborArr = tempArr;
                 }
             }
         }
 
         return neighborArr;
-    }
-
-//----------RETURNS A BOOLEAN WHETHER TWO VERTICES ARE ADJACENT OR NOT----------
-    public boolean checkIfAdjacent(String vertexName1, String vertexName2){
-        if(!exists(vertexName1)){
-            System.out.println("Vertex 1 does not exist!!!");
-            return false;
-        }
-        if(!exists(vertexName2)){
-            System.out.println("Vertex 2 does not exist!!!");
-            return false;
-        }
-        else{
-            boolean status = false;
-            Vertex[] adjacentToVertex1 = getAdjacentVertices(vertexName1);
-            Vertex[] adjacentToVertex2 = getAdjacentVertices(vertexName2);
-            
-            for(int i=0; i<adjacentToVertex1.length; i++){
-                if(vertexName1.equals(adjacentToVertex1[i].name)){
-                    status = true;
-                }
-            }
-            for(int i=0; i<adjacentToVertex2.length; i++){
-                if(vertexName2.equals(adjacentToVertex2[i].name)){
-                    status = true;
-                }
-            }
-
-            return status;
-        }
-    }
-
-//----------RETURNS A BOOLEAN WHETHER TWO VERTICES ARE CONNECTED OR NOT----------
-    public boolean checkIfConnected(String vertexName1, String vertexName2){
-        boolean status = false;
-
-        if(!exists(vertexName1)){
-            System.out.println("Vertex 1 does not exist!!!");
-        }
-        if(!exists(vertexName2)){
-            System.out.println("Vertex 2 does not exist!!!");
-        }
-        else{
-            Stack stack = new Stack();
-            int vertex1Position = findPosition(vertexName1);
-            int vertex2Position = findPosition(vertexName2);
-
-            stack.push(vertexArray[vertex1Position]);
-            int poppedPosition;
-
-            while(stack.isEmpty() == false){
-                Vertex popped = stack.pop();
-                
-                poppedPosition = findPosition(popped.name);
-                vertexArray[poppedPosition].isVisited = true;
-
-                Vertex[] adjacentVertices = getAdjacentVertices(popped.name);
-
-                for(int i=0; i<adjacentVertices.length; i++){
-                    poppedPosition = findPosition(adjacentVertices[i].name);
-                    if(vertexArray[poppedPosition].isVisited == false){
-                        vertexArray[poppedPosition].inWeight = adjacentVertices[i].inWeight;
-                        stack.push(vertexArray[poppedPosition]);
-                        vertexArray[poppedPosition].isVisited = true;
-                    }
-                }
-            }
-            
-            if(vertexArray[vertex2Position].isVisited == true){
-                status = true;
-            }
-
-            for(int i=0; i<vertexArray.length; i++){
-                vertexArray[i].isVisited = false;
-            }
-        }
-
-        return status;
     }
 
 //----------RETURNS ARRAY OF VERTICES----------
@@ -314,7 +227,7 @@ public class AdjacencyMatrix{
         return status;
     }
 
-//----------FINDS POSITION OF A CERTAIN VERTEX FROM AN OPEN SET----------
+//----------FINDS POSITION OF A CERTAIN VERTEX FROM THE GRAPH----------
     public int findPosition(String vertexName){
         int position = -1;
 

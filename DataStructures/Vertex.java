@@ -7,6 +7,9 @@ public class Vertex{
     public int inDegree = 0;
     public double inWeight = 0;
     public double weight = 0;
+    public double g;
+    public double h;
+    public double f;
 
     public Vertex(String str, double num){
         name = str;
