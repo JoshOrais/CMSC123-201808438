@@ -3,6 +3,7 @@ package MachineProblems.MP_AStar.DataStructures;
 
 public class AStar{
     private AdjacencyMatrix graph = new AdjacencyMatrix();
+    private double[] heuristicValues;
     private Vertex[] vertexArray;
     private double[][] matrix;
     private String startName;
@@ -11,19 +12,20 @@ public class AStar{
     private String shortestPath = "";
     private double time = 0;
 
-    public AStar(AdjacencyMatrix inputGraph, String startName, String endName){
-        graph = inputGraph;
+    public AStar(AdjacencyMatrix graph, double[] hValues, String start, String end){
+        this.graph = graph;
+        heuristicValues = hValues;
         vertexArray = graph.getVertexArr();
         matrix = graph.getMatrix();
-        this.startName = startName;
-        this.endName = endName;
+        startName = start;
+        endName = end;
         start();
     }
 
     public void start(){
         for (int i=0; i<vertexArray.length; i++){
             vertexArray[i].g = Double.POSITIVE_INFINITY;
-            vertexArray[i].h = getHeuristic(vertexArray[i].name);
+            vertexArray[i].h = heuristicValues[i];
             vertexArray[i].f = 0;
             vertexArray[i].prev = null;
         }
@@ -53,10 +55,6 @@ public class AStar{
 
         Vertex endVertex = priorityQueue.dequeue();
         time = endVertex.g;
-    }
-
-    public double getHeuristic(String vertexName){
-        return 1;
     }
 
     public String getShortestPath(){
