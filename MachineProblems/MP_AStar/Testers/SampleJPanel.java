@@ -1,34 +1,22 @@
-package MachineProblems.MP_AStar.Panels;
+package MachineProblems.MP_AStar.Testers;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AlgoPanel extends JPanel{
-    private String content = "";
+public class SampleJPanel extends JPanel{
+    private JButton b =new JButton("CENTER");
     private JTextArea textArea;
     private JScrollPane scrollPane;
 
-    public AlgoPanel(Dimension panelDimension){
+    public SampleJPanel(Dimension panelDimension){
         this.setSize(panelDimension);
         this.setLayout(new BorderLayout());
         this.setBackground(Color.green); 
         this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         textArea = new JTextArea("Sample Text");
-        textArea.setEditable(false);
         scrollPane = new JScrollPane(textArea);
 
         this.add(scrollPane, BorderLayout.CENTER); 
     }
-
-    public void updatePanel(String update){
-        content = content + update;
-        textArea.setText(content);
-        System.out.println("Algo panel updated successfully!");
-    }
-
-    public void clearContent(){
-        content = "";
-    }
-
 }

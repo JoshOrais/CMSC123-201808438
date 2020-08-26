@@ -4,17 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RightPanel extends JPanel{
-    private Dimension buttonDimension = new Dimension(150,50);
-    private Dimension radioDimension = new Dimension(75,25);
-
-    private JButton start = new JButton("Start"), 
-                    results = new JButton("Results"), 
-                    exit = new JButton("Exit");
-    private JRadioButton    step = new JRadioButton("Step"), 
+    private JLabel inputTitle = new JLabel("INPUT");
+    public JComboBox<String> inputSelection;
+    public JRadioButton    step = new JRadioButton("Step"), 
                             slow = new JRadioButton("Slow"), 
                             fast = new JRadioButton("Fast");
     private ButtonGroup buttonGroup = new ButtonGroup();
-    private JComboBox inputSelection;
+    public JButton start = new JButton("Start"), 
+                    pause = new JButton("Pause"),
+                    stop = new JButton("Stop"),
+                    results = new JButton("Results"), 
+                    exit = new JButton("Exit");
 
     public RightPanel(Dimension panelDimension){
         this.setSize(panelDimension);
@@ -24,29 +24,36 @@ public class RightPanel extends JPanel{
     }
     
     public void setComponents(){
-        start.setBounds(50, 450, buttonDimension.width , buttonDimension.height);
-        results.setBounds(50,550, buttonDimension.width , buttonDimension.height);
-        exit.setBounds(50,650, buttonDimension.width , buttonDimension.height);
+        String[] choices = {"Select File","Random Input"};
+        inputSelection = new JComboBox<String>(choices);
+        inputSelection.setSelectedIndex(-1);
 
-        step.setBounds(10,400, radioDimension.width, radioDimension.height);
-        slow.setBounds(85,400, radioDimension.width, radioDimension.height);
-        fast.setBounds(160,400, radioDimension.width, radioDimension.height);
-
-        String[] choices = {"Input File","Random"};
-        inputSelection = new JComboBox(choices);
+        inputTitle.setBounds(50,100,100,25);
         inputSelection.setBounds(50,125,150,50);
+
+        step.setBounds(10,400, 75, 25);
+        slow.setBounds(85,400, 75, 25);
+        fast.setBounds(160,400, 75, 25);
+
+        start.setBounds(40, 450, 80, 50);
+        pause.setBounds(130, 450, 80, 50);
+        stop.setBounds(40, 510, 170,40);
+        results.setBounds(40,575, 170, 50);
+        exit.setBounds(40,675, 170, 30);
 
         buttonGroup.add(step);
         buttonGroup.add(slow);
         buttonGroup.add(fast);
 
-        this.add(start);
-        this.add(results);
-        this.add(exit);
+        this.add(inputTitle);
+        this.add(inputSelection);
         this.add(step);
         this.add(slow);
         this.add(fast);
-
-        this.add(inputSelection);
+        this.add(start);
+        this.add(pause);
+        this.add(stop);
+        this.add(results);
+        this.add(exit);        
     }
 }
